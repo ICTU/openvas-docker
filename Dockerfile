@@ -1,7 +1,7 @@
-# OpenVAS
-
+# OpenVAS with automated scanscript
+# Based on OpenVAS image for Docker by Mike Splain
 FROM ubuntu:14.04
-MAINTAINER Mike Splain mike.splain@gmail.com
+MAINTAINER Rory Breuk rory.breuk@ictu.nl
 
 ADD bin/* /openvas/
 ADD config/redis.config /etc/redis/redis.config
@@ -21,7 +21,7 @@ RUN apt-get update && \
                     openvas \
                     openvas-smb \
                     psmisc \
-                    python \
+                    python2.7 \
                     python-paramiko \
                     python-pip \
                     python-setuptools \
@@ -86,9 +86,10 @@ RUN apt-get update && \
     apt-get clean -yq && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/* && \
-    /openvas/setup.sh
+    /openvas/setup.sh && \
+    pip install openvas_lib 
 
-CMD /openvas/start.sh
+CMD /openvas/run_scan.py
 
 # Expose UI
 EXPOSE 80 443 9390 9391 9392
