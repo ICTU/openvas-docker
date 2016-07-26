@@ -1,15 +1,7 @@
 OpenVAS image for Docker
 ==============
 
-[![Circle CI](https://img.shields.io/circleci/project/mikesplain/openvas-docker/master.svg)](https://circleci.com/gh/mikesplain/openvas-docker/tree/master)
-[![Docker Pulls](https://img.shields.io/docker/pulls/mikesplain/openvas.svg)](https://hub.docker.com/r/mikesplain/openvas/)
-[![Docker Stars](https://img.shields.io/docker/stars/mikesplain/openvas.svg)](https://hub.docker.com/r/mikesplain/openvas/)
-[![ImageLayers Layers](https://img.shields.io/imagelayers/layers/mikesplain/openvas/latest.svg)](https://imagelayers.io/?images=mikesplain/openvas:latest)
-[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/mikesplain/openvas/latest.svg)](https://imagelayers.io/?images=mikesplain/openvas:latest)
-
 A Docker container for OpenVAS 8 on the Ubuntu 14.04 image.  By default, the latest images includes the OpenVAS Base as well as the NVTs and Certs required to run OpenVAS.
-
-Update Feb 22nd 2016: We now build using packages rather than compilition in container.  If you experience any problems, please submit an issue!
 
 Requirements
 ------------
@@ -22,21 +14,11 @@ Usage
 Simply run:
 
 ```
-docker run -d -p 443:443 -p 9390:9390 -p 9391:9391 --name openvas mikesplain/openvas
+docker build -t openvas openvas-docker
+docker run openvas /openvas/run_scan.py <target> <target file>
 ```
 
-This will grab the container from the docker registry and start it up.  Openvas startup can take some time (4-5 minutes while NVT's are scanned and databases rebuilt), so be patient.  Once you see a `gasd` process in the top command below, the web ui is good to go.  Goto `https://<machinename>`
-
-```
-Username: admin
-Password: openvas
-```
-
-To check the status of the process, run:
-
-```
-docker top openvas
-```
+This will build the container and start it up.  Openvas startup can take some time (4-5 minutes while NVT's are scanned and databases rebuilt), so be patient. After that, the scan script will be run.
 
 In the output, look for the process scanning cert data.  It contains a percentage.
 
