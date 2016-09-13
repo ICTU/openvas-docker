@@ -3,6 +3,7 @@ from __future__ import print_function
 
 import base64, os, sys, time
 import xml.etree.ElementTree as ET
+import shutil
 
 from functools import partial
 from openvas_lib import VulnscanManager, VulnscanException
@@ -43,13 +44,16 @@ time.sleep(1)
 report_id = scanner.get_report_id(scan_id)
 report = scanner.get_report_html(report_id).find("report")
 
-print(report.find("report_format").tail)
-
 htmlb64 = report.find("report_format").tail
 
-f = open(BASEPATH + os.path.split(sys.argv[2])[1], 'w')
+export_path = BASEPATH + 'results/' + os.path.split(sys.argv[2])[1]
+print('Writing HTML report to ' + export_path)
+
+f = open(export_path, 'w')
 f.write(base64.b64decode(htmlb64))
 f.close()
+
+shutil.copy(BASEPATH + 'style.css', BASEPATH + 'results/style.css')
 
 scanner.delete_scan(scan_id)
 scanner.delete_target(target_id)
