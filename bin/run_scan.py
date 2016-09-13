@@ -22,6 +22,8 @@ if len(sys.argv) < 3:
 
 os.system(BASEPATH + 'start.sh')
 
+print('Starting scan')
+
 try:
     scanner = VulnscanManager(HOST, USER, PASSWORD)
 except VulnscanException as e:
@@ -40,6 +42,9 @@ time.sleep(1)
 
 report_id = scanner.get_report_id(scan_id)
 report = scanner.get_report_html(report_id).find("report")
+
+print(report.find("report_format").tail)
+
 htmlb64 = report.find("report_format").tail
 
 f = open(BASEPATH + os.path.split(sys.argv[2])[1], 'w')
