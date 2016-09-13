@@ -3,6 +3,10 @@ OpenVAS image for Docker
 
 A Docker container for OpenVAS 8 on the Ubuntu 14.04 image.  By default, the latest images includes the OpenVAS Base as well as the NVTs and Certs required to run OpenVAS.
 
+This project is a clone of https://github.com/mikesplain/openvas-docker with an added custom script script.
+
+The Dockerfile is published at: https://hub.docker.com/r/ictu/openvas-docker
+
 Requirements
 ------------
 Docker
