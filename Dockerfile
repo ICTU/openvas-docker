@@ -1,8 +1,7 @@
 # OpenVAS with automated scanscript
 # Based on OpenVAS image for Docker by Mike Splain
 FROM ubuntu:14.04
-MAINTAINER Dick Snel dick.snel@ictu.nl
-
+MAINTAINER Alwin Peppels alwin.peppels@ictu.nl
 ADD bin/* /openvas/
 ADD config/redis.config /etc/redis/redis.config
 
