@@ -1,34 +1,39 @@
 # OpenVAS with automated scanscript
 # Based on OpenVAS image for Docker by Mike Splain
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Alwin Peppels alwin.peppels@ictu.nl
 ADD bin/* /openvas/
 ADD config/redis.config /etc/redis/redis.config
+ADD start /start
+
 
 RUN apt-get update && \
-    apt-get install software-properties-common -yq && \
+    apt-get install software-properties-common --no-install-recommends -yq && \
     add-apt-repository ppa:mikesplain/openvas -y && \
+    add-apt-repository ppa:mrazavi/openvas -y && \
+    apt-get clean && \
     apt-get update && \
-    apt-get upgrade -y && \
     apt-get install alien \
+                    bzip2 \
+                    curl \
                     dirb \
                     dnsutils \
+                    libopenvas9-dev \
+                    net-tools \
                     nikto \
                     nmap \
                     nsis \
                     openssh-client \
-                    openvas \
-                    psmisc \
-                    python2.7 \
-                    python-paramiko \
-                    python-pip \
-                    python-setuptools \
+                    openvas9 \
                     rpm \
                     rsync \
+                    sendmail \
+                    smbclient \
                     sqlite3 \
                     texlive-latex-base \
                     texlive-latex-extra \
                     texlive-latex-recommended \
+                    w3af \
                     wapiti \
                     wget \
                     -yq && \
