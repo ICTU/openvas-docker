@@ -18,7 +18,6 @@ RUN apt-get update && \
                     nsis \
                     openssh-client \
                     openvas \
-                    openvas-smb \
                     psmisc \
                     python2.7 \
                     python-paramiko \
@@ -35,6 +34,7 @@ RUN apt-get update && \
                     -yq && \
     mkdir /osp && \
     cd /osp && \
+        wget http://wald.intevation.org/frs/download.php/1975/openvas-smb-1.0.1.tar.gz ;\
         wget http://wald.intevation.org/frs/download.php/1999/ospd-1.0.0.tar.gz && \
         wget http://wald.intevation.org/frs/download.php/2145/ospd-1.0.1.tar.gz && \
         wget http://wald.intevation.org/frs/download.php/2177/ospd-1.0.2.tar.gz && \
@@ -44,6 +44,7 @@ RUN apt-get update && \
         wget http://wald.intevation.org/frs/download.php/2149/ospd-paloalto-1.0b1.tar.gz && \
         wget http://wald.intevation.org/frs/download.php/2004/ospd-w3af-1.0.0.tar.gz && \
         wget http://wald.intevation.org/frs/download.php/2181/ospd-acunetix-1.0b1.tar.gz && \
+        tar zxvf openvas-smb-1.0.1.tar.gz && \
         tar zxvf ospd-1.0.0.tar.gz && \
         tar zxvf ospd-1.0.1.tar.gz && \
         tar zxvf ospd-1.0.2.tar.gz && \
@@ -54,6 +55,8 @@ RUN apt-get update && \
         tar zxvf ospd-w3af-1.0.0.tar.gz && \
         tar zxvf ospd-acunetix-1.0b1.tar.gz && \
     cd /osp/ospd-1.0.0 && \
+        python setup.py install && \
+    cd /osp/openvas-smb-1.0.1 && \
         python setup.py install && \
     cd /osp/ospd-ancor-1.0.0 && \
         pip install requests && \
