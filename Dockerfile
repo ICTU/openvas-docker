@@ -86,7 +86,7 @@ RUN apt-get update && \
     apt-get autoremove -yq && \
     rm -rf /var/lib/apt/lists/* && \
     /openvas/setup.sh && \
-    pip install openvas_lib 
+    pip install openvas_lib  
 
 CMD /openvas/run_scan.py
 
