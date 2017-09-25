@@ -4,8 +4,6 @@ FROM ubuntu:16.04
 MAINTAINER Alwin Peppels alwin.peppels@ictu.nl
 ADD bin/* /openvas/
 ADD config/redis.config /etc/redis/redis.config
-ADD start /start
-
 
 RUN apt-get update && \
     apt-get install software-properties-common --no-install-recommends -yq && \
