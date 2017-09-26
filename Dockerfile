@@ -15,6 +15,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get install alien \
                     bzip2 \
                     cmake \
+                    cmake-data \
                     curl \
                     dirb \
                     dnsutils \
@@ -25,6 +26,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     nsis \
                     openssh-client \
                     openvas9 \
+                    pkg-config \
                     python-setuptools \
                     rpm \
                     rsync \
