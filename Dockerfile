@@ -11,7 +11,7 @@ RUN apt-get update && \
     add-apt-repository ppa:mrazavi/openvas -y && \
     apt-get clean && \
     apt-get update && \
-    apt-get install alien \
+    yes | apt-get install alien \
                     bzip2 \
                     curl \
                     dirb \
