@@ -24,6 +24,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     nsis \
                     openssh-client \
                     openvas9 \
+                    python-setuptools \
                     rpm \
                     rsync \
                     sendmail \
