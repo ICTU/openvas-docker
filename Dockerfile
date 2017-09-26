@@ -5,13 +5,14 @@ MAINTAINER Alwin Peppels alwin.peppels@ictu.nl
 ADD bin/* /openvas/
 ADD config/redis.config /etc/redis/redis.config
 
-RUN apt-get update && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
     apt-get install software-properties-common --no-install-recommends -yq && \
     add-apt-repository ppa:mikesplain/openvas -y && \
     add-apt-repository ppa:mrazavi/openvas -y && \
     apt-get clean && \
     apt-get update && \
-    yes | apt-get install alien \
+    apt-get install alien \
                     bzip2 \
                     curl \
                     dirb \
@@ -34,7 +35,7 @@ RUN apt-get update && \
                     w3af \
                     wapiti \
                     wget \
-                    -yq && \
+                    --force-yes -yq && \
     mkdir /osp && \
     cd /osp && \
         wget http://wald.intevation.org/frs/download.php/1975/openvas-smb-1.0.1.tar.gz ;\
