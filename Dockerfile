@@ -59,9 +59,14 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         tar zxvf ospd-paloalto-1.0b1.tar.gz && \
         tar zxvf ospd-w3af-1.0.0.tar.gz && \
         tar zxvf ospd-acunetix-1.0b1.tar.gz && \
+    cd /osp/openvas-smb-1.0.1 ;\
+        mkdir build && \
+        cd build/  && \
+        cmake ..  && \
+        make  && \
+        make doc-full  && \
+        make install  && \
     cd /osp/ospd-1.0.0 && \
-        python setup.py install && \
-    cd /osp/openvas-smb-1.0.1 && \
         python setup.py install && \
     cd /osp/ospd-ancor-1.0.0 && \
         pip install requests && \
