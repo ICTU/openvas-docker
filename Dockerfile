@@ -14,6 +14,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install alien \
                     bzip2 \
+                    cmake \
                     curl \
                     dirb \
                     dnsutils \
