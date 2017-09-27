@@ -23,7 +23,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     dnsutils \
                     dpatch \
                     libassuan-dev \ 
-                    libopenvas2 \
+                    libopenvas8 \
                     libpopt-dev \
                     net-tools \
                     nikto \
