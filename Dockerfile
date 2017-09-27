@@ -30,7 +30,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     nmap \
                     nsis \
                     openssh-client \
-                    openvas9 \
+                    openvas \
                     pkg-config \
                     python-setuptools \
                     rpm \
