@@ -31,7 +31,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     nsis \
                     openssh-client \
                     openvas \
-                    openvas-scanner
+                    openvas-scanner \
                     openvas-cli \ 
                     openvas-gsa \
                     openvas-manager \
