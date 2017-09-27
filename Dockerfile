@@ -1,6 +1,6 @@
 # OpenVAS with automated scanscript
 # Based on OpenVAS image for Docker by Mike Splain
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER Alwin Peppels alwin.peppels@ictu.nl
 ADD bin/* /openvas/
 ADD config/redis.config /etc/redis/redis.config
@@ -13,13 +13,18 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get clean && \
     apt-get update && \
     apt-get install alien \
+                    build-essential \ 
                     bzip2 \
                     cmake \
                     cmake-data \
                     curl \
+                    devscripts \
                     dirb \
                     dnsutils \
-                    libopenvas9-dev \
+                    dpatch \
+                    ibassuan-dev \ 
+                    libopenvas2 \
+                    libopt-dev \
                     net-tools \
                     nikto \
                     nmap \
@@ -62,7 +67,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         tar zxvf ospd-paloalto-1.0b1.tar.gz && \
         tar zxvf ospd-w3af-1.0.0.tar.gz && \
         tar zxvf ospd-acunetix-1.0b1.tar.gz && \
-    cd /osp/openvas-smb-1.0.1 ;\
+    cp /etc/redis/redis.conf /etc/redis/redis.orig && \
+    echo "unixsocket /tmp/redis.sock" >> /etc/redis/redis.conf && \
+    service redis-server restart && \ 
+    cd /osp/openvas-smb-1.0.1 &&\
         mkdir build && \
         cd build/  && \
         cmake ..  && \
