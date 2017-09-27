@@ -22,9 +22,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     dirb \
                     dnsutils \
                     dpatch \
-                    ibassuan-dev \ 
+                    libassuan-dev \ 
                     libopenvas2 \
-                    libopt-dev \
+                    libpopt-dev \
                     net-tools \
                     nikto \
                     nmap \
