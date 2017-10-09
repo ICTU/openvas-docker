@@ -64,6 +64,7 @@ RUN mkdir -p /var/run/redis && \
     greenbone-nvt-sync && \
     greenbone-scapdata-sync && \
     greenbone-certdata-sync && \
+    chmod +x /start && \
     BUILD=true /start && \
     service openvas-scanner stop && \
     service openvas-manager stop && \
@@ -72,7 +73,6 @@ RUN mkdir -p /var/run/redis && \
 
 ADD run_scan.py /run_scan.py
 RUN chmod +x /run_scan.py
-RUN chmod +x /start
 
 CMD /start
 
