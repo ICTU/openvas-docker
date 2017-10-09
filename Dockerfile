@@ -72,6 +72,7 @@ RUN mkdir -p /var/run/redis && \
 
 ADD run_scan.py /run_scan.py
 RUN chmod +x /run_scan.py
+RUN chmod +x /start
 
 CMD /start
 
