@@ -65,6 +65,7 @@ RUN mkdir -p /var/run/redis && \
     greenbone-scapdata-sync && \
     greenbone-certdata-sync && \
     chmod +x /start && \
+    sync && \ 
     BUILD=true /start && \
     service openvas-scanner stop && \
     service openvas-manager stop && \
