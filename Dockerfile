@@ -54,9 +54,10 @@ RUN wget --quiet https://github.com/Arachni/arachni/releases/download/v1.5/arach
     rm -rf arachni*
 
 RUN mkdir -p /var/run/redis && \
+    mkdir -p /openvas/results && \
     wget -q --no-check-certificate \
     https://wald.intevation.org/svn/openvas/trunk/tools/openvas-check-setup \
-      -O /openvas-check-setup && \
+      -O /openvas/openvas-check-setup && \
     chmod +x /openvas-check-setup && \
     sed -i 's/DAEMON_ARGS=""/DAEMON_ARGS="-a 0.0.0.0"/' /etc/init.d/openvas-manager && \
     sed -i 's/DAEMON_ARGS=""/DAEMON_ARGS="--mlisten 127.0.0.1 -m 9390"/' /etc/init.d/openvas-gsa && \
@@ -72,9 +73,7 @@ RUN mkdir -p /var/run/redis && \
     service openvas-gsa stop && \
     service redis-server stop
 
-ADD run_scan.py /run_scan.py
-RUN chmod +x /run_scan.py
-
-CMD /start
+ADD run_scan.py /openvas/run_scan.py
+RUN chmod +x /openvas/run_scan.py
 
 EXPOSE 443 9390

@@ -38,7 +38,7 @@ if [ -n "$SETUPUSER" ]; then
 fi
 
 echo "Checking setup"
-./openvas-check-setup --v9
+/openvas/openvas-check-setup --v9
 
 if [ -z "$BUILD" ]; then
   echo "Tailing logs"
