@@ -57,7 +57,8 @@ get_report = "omp {} -R {} -f 6c248850-1f62-11e1-b082-406186ea4fc5".format(omp_l
 report_response = subprocess.check_output(get_report, shell=True)
 print("report: {}".format(report_response[:30]))
 
-export_path = os.path.split(sys.argv[2])[1]
+report_filename = os.path.split(sys.argv[2])[1]
+export_path = "/openvas/results/" + report_filename 
 print('Writing HTML report to ' + export_path)
 
 f = open(export_path, 'w')
