@@ -49,7 +49,9 @@ while status != "Done":
 	status = etree.XML(get_status_response).xpath("//status")[0].text
 	progress = etree.XML(get_status_response).xpath("//progress")[0].text
 	print("Status: {} {}%".format(status, progress))
-
+	
+openvaslog = open("/var/log/openvas/openvassd.messages", "r").read()
+print("openvassd.messages: {}".format(openvaslog))
 report_id = etree.XML(get_status_response).xpath("//report")[0].get("id")
 print("report_id: {}".format(report_id))
 
