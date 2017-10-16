@@ -29,7 +29,7 @@ service openvas-manager restart
 service openvas-gsa restart
 
 echo "Reloading NVTs"
-openvasmd --rebuild --progress
+openvasmd --rebuild 
 
 if [ -n "$SETUPUSER" ]; then
   echo "Setting up user"
