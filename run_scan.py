@@ -19,7 +19,7 @@ if len(sys.argv) < 3:
 
 print('Starting OpenVAS')
 
-os.system('BUILD=true /start')
+subprocess.call(['/start'])
 
 print('Starting scan')
 
@@ -27,7 +27,6 @@ omp_logon = "-u admin -w admin -h 127.0.0.1 -p 9390"
 
 create_target = "omp {0} --xml '<create_target><name>{1}</name><hosts>{1}</hosts></create_target>'".format(omp_logon, sys.argv[1])
 create_target_response = subprocess.check_output(create_target, shell=True)
-print(create_target_response)
 target_id = etree.XML(create_target_response).xpath("//create_target_response")[0].get("id")
 print("target_id: {}".format(target_id))
 
@@ -43,13 +42,17 @@ print("Waiting for task to finish")
 
 status = ""
 get_status = "omp {} --xml '<get_tasks task_id=\"{}\"/>'".format(omp_logon, task_id)
+
 while status != "Done":
-	time.sleep(1)
-	get_status_response = subprocess.check_output(get_status, shell=True)
-	status = etree.XML(get_status_response).xpath("//status")[0].text
-	progress = etree.XML(get_status_response).xpath("//progress")[0].text
-	print("Status: {} {}%".format(status, progress))
-	
+	try:
+		time.sleep(2)
+		get_status_response = subprocess.check_output(get_status, stderr=subprocess.STDOUT, shell=True)
+		status = etree.XML(get_status_response).xpath("//status")[0].text
+		progress = etree.XML(get_status_response).xpath("//progress")[0].text
+		print("Status: {} {}%".format(status, progress))
+	except subprocess.CalledProcessError as exc:
+		print("Error: ", exc.output) 
+
 openvaslog = open("/var/log/openvas/openvassd.messages", "r").read()
 print("openvassd.messages: {}".format(openvaslog))
 report_id = etree.XML(get_status_response).xpath("//report")[0].get("id")
