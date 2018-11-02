@@ -33,7 +33,7 @@ echo "Restarting services"
 
 
 echo "Reloading NVTs"
-openvasmd --rebuild --progress
+openvasmd --rebuild
 
 if [ -n "$SETUPUSER" ]; then
   echo "Setting up user"
