@@ -26,16 +26,17 @@ print('Starting scan')
 omp_logon = "-u admin -w admin -h 127.0.0.1 -p 9390"
 
 create_target = "omp {0} --xml '<create_target><name>{1}</name><hosts>{1}</hosts></create_target>'".format(omp_logon, sys.argv[1])
-create_target_response = subprocess.check_output(create_target, shell=True)
+create_target_response = subprocess.check_output(create_target, stderr=subprocess.STDOUT, shell=True)
+print(create_target_response)
 target_id = etree.XML(create_target_response).xpath("//create_target_response")[0].get("id")
 print("target_id: {}".format(target_id))
 
 create_task = ("omp {} -C --target={} --config={} --name=scan").format(omp_logon, target_id, configs[2])
-task_id = subprocess.check_output(create_task, shell=True).strip()
+task_id = subprocess.check_output(create_task, stderr=subprocess.STDOUT, shell=True).strip()
 print("task_id: {}".format(task_id))
 
 start_task = "omp {} -S {}".format(omp_logon, task_id)
-start_task_response = subprocess.check_output(start_task, shell=True)
+start_task_response = subprocess.check_output(start_task, stderr=subprocess.STDOUT, shell=True)
 print("start_task: {}".format(start_task_response))
 
 print("Waiting for task to finish")
@@ -57,9 +58,8 @@ openvaslog = open("/var/log/openvas/openvassd.messages", "r").read()
 print("openvassd.messages: {}".format(openvaslog))
 report_id = etree.XML(get_status_response).xpath("//report")[0].get("id")
 print("report_id: {}".format(report_id))
-
-get_report = "omp {} -R {} -f 6c248850-1f62-11e1-b082-406186ea4fc5".format(omp_logon, report_id)
-report_response = subprocess.check_output(get_report, shell=True)
+get_report = "omp {} -R {} -f 6c248850-1f62-11e1-b082-406186ea4fc5 --details".format(omp_logon, report_id)
+report_response = subprocess.check_output(get_report, stderr=subprocess.STDOUT, shell=True)
 print("report: {}".format(report_response[:30]))
 
 report_filename = os.path.split(sys.argv[2])[1]
