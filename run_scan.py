@@ -67,7 +67,7 @@ for report_format, report_format_id in report_formats:
     print("{}-report: {}...".format(report_format.upper(), report_response[:30]))
 
     report_filename = os.path.split(sys.argv[2])[1]
-    if report_filename.ensdwith(".html"):
+    if report_filename.endswith(".html"):
         report_filename = report_filename[:-len(".html")]
     export_path = "/openvas/results/{}.{}".format(report_filename, report_format)
     print('Writing {}-report to {}'.format(report_format.upper(), export_path))
