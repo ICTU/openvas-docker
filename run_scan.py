@@ -20,7 +20,7 @@ if len(sys.argv) < 3:
 
 print('Starting OpenVAS')
 
-subprocess.call(['/start'])
+os.system('BUILD=true /start')
 
 print('Starting scan')
 
@@ -77,4 +77,3 @@ for report_format, report_format_id in report_formats:
     f.close()
 
 print('Done!')
-
