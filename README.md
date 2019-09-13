@@ -1,4 +1,4 @@
-OpenVAS Docker image with automatic scan script
+OpenVAS Docker with automated CLI scan script
 ==============
 
 A Docker container for OpenVAS 9. This project is a clone of https://github.com/mikesplain/openvas-docker with an additional Python script to automatically start a scan. The Dockerfile is published at: https://hub.docker.com/r/ictu/openvas-docker
