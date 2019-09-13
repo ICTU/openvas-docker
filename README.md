@@ -17,6 +17,13 @@ docker pull ictu/openvas-docker
 docker run --rm -v $(pwd):/openvas/results/ ictu/openvas-docker /openvas/run_scan.py 123.123.123.123,www.github.com openvas_scan_report
 ```
 
+Or with SSH authentication to perform an authenticated scan: (also possible with -k <private key>)
+
+```
+docker pull ictu/openvas-docker
+docker run --rm -v $(pwd):/openvas/results/ ictu/openvas-docker /openvas/run_scan.py 123.123.123.123 openvas_scan_report -u root -p password
+```
+
 This will startup the container and update the NVTs. It can take some time (4-5 minutes while NVT's are scanned and databases rebuilt), so be patient. After that, the scan script will run and the progress is displayed. When ready, the script writes both an HTML and XML version of the report.
 
 
