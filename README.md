@@ -17,7 +17,7 @@ docker pull ictu/openvas-docker
 docker run --rm -v $(pwd):/openvas/results/ ictu/openvas-docker /openvas/run_scan.py 123.123.123.123,www.github.com openvas_scan_report
 ```
 
-Or with SSH authentication to perform an authenticated scan: (also possible with -k <<private key>>)
+Or with SSH authentication to perform an authenticated scan: (also possible with -k 'private key')
 
 ```
 docker pull ictu/openvas-docker
