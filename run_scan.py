@@ -61,7 +61,7 @@ if options.ssh_username:
 	print("credential_id: {}".format(credential_id))
 	create_target_sshcredential = "<ssh_credential id=\"{}\"><port>22</port></ssh_credential>".format(credential_id)
 
-create_target = "{0} --xml '<create_target><name>{1}-{2}</name><hosts>{1}</hosts>{3}</create_target>'".format(omp_logon, hosts, random.randint(1,101), create_target_sshcredential)
+create_target = "{0} --xml '<create_target><name>{1}-{2}</name><hosts>{1}</hosts><alive_tests>ICMP, TCP-ACK Service &amp; ARP Ping</alive_tests>{3}</create_target>'".format(omp_logon, hosts, random.randint(1,101), create_target_sshcredential)
 create_target_response = subprocess.check_output(create_target, stderr=subprocess.STDOUT, shell=True)
 target_id = etree.XML(create_target_response).xpath("//create_target_response")[0].get("id")
 print("target_id: {}".format(target_id))
