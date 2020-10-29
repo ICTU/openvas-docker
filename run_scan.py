@@ -10,7 +10,7 @@ from datetime import datetime
 parser = optparse.OptionParser()
 
 parser.add_option('-n', '--no-ping',
-    action="store", dest="consider_alive",
+    action="store_false", dest="consider_alive",
     help="Consider all hosts as alive", default=False)
 
 parser.add_option('-u', '--username',
