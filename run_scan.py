@@ -65,22 +65,26 @@ if options.ssh_username:
 	print("credential_id: {}".format(credential_id))
 	create_target_sshcredential = "<ssh_credential id=\"{}\"><port>22</port></ssh_credential>".format(credential_id)
 
-alive_tests = ""
+alive_tests = "<alive_tests>ICMP, TCP-ACK Service &amp; ARP Ping</alive_tests>"
 if options.consider_alive:
-    alive_tests = "<alive_tests>consider alive</alive_tests>"
+    alive_tests = "<alive_tests>Consider Alive</alive_tests>"
 
 create_target = "{0} --xml '<create_target><name>{1}-{2}</name><hosts>{1}</hosts>{3}{4}</create_target>'".format(omp_logon, hosts, random.randint(1,101), alive_tests, create_target_sshcredential)
 create_target_response = subprocess.check_output(create_target, stderr=subprocess.STDOUT, shell=True)
 target_id = etree.XML(create_target_response).xpath("//create_target_response")[0].get("id")
+print("create_target: {}".format(create_target))
+print("create_target_response: {}".format(create_target_response))
 print("target_id: {}".format(target_id))
 
 create_task = "{} -C --target={} --config={} --name=scan".format(omp_logon, target_id, options.config_id)
 task_id = subprocess.check_output(create_task, stderr=subprocess.STDOUT, shell=True).strip()
+print("create_task: {}".create_task(create_task))
 print("task_id: {}".format(task_id))
 
 start_task = "{} -S {}".format(omp_logon, task_id)
 start_task_response = subprocess.check_output(start_task, stderr=subprocess.STDOUT, shell=True)
-print("start_task: {}".format(start_task_response))
+print("start_task: {}".format(start_task))
+print("start_task_response: {}".format(start_task_response))
 
 print("Waiting for task to finish")
 
