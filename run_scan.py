@@ -78,7 +78,7 @@ print("target_id: {}".format(target_id))
 
 create_task = "{} -C --target={} --config={} --name=scan".format(omp_logon, target_id, options.config_id)
 task_id = subprocess.check_output(create_task, stderr=subprocess.STDOUT, shell=True).strip()
-print("create_task: {}".create_task(create_task))
+print("create_task: {}".format(create_task))
 print("task_id: {}".format(task_id))
 
 start_task = "{} -S {}".format(omp_logon, task_id)
