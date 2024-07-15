@@ -1,3 +1,12 @@
+## 🚨 Repository archived🚨
+
+At July 15th 2024, this repository is archived. It will not be maintained anymore.
+
+## Why is this repository archived?
+
+This repository is not used anymore (to our knowledge) and we are trying to cleanup all ICTU repositories so it's clear what is being maintained and what is not. It's recommended to use one of the publicly available OpenVAS repositories, like https://github.com/greenbone/openvas-scanner. The original documentation is kept below for reference.
+
+
 OpenVAS Docker with automated CLI scan script
 ==============
 
